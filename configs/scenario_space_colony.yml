@@ -1,0 +1,14 @@
+tick_rate_secs: 1.0
+resources:
+  oxygen: 100.0
+  food: 100.0
+  power: 100.0
+population:
+  size: 24
+  sickness_rate: 0.01
+morale: 70.0
+hazards:
+  - type: "dust_storm"
+    chance: 0.05
+  - type: "equipment_failure"
+    chance: 0.08

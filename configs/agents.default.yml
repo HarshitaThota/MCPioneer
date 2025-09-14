@@ -1,0 +1,10 @@
+agents:
+  - name: "Astra"
+    role: "engineer"
+    personality: { risk_aversion: 0.3, altruism: 0.6, curiosity: 0.5 }
+  - name: "Lyra"
+    role: "scientist"
+    personality: { risk_aversion: 0.4, altruism: 0.5, curiosity: 0.9 }
+  - name: "Corvus"
+    role: "politician"
+    personality: { risk_aversion: 0.6, altruism: 0.4, curiosity: 0.4 }

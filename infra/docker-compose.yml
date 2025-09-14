@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  gateway:
+    build: { context: ./../apps/gateway }
+    env_file: ../.env
+    ports: [ "8000:8000" ]
+    volumes:
+      - ../artifacts:/artifacts
+
+  orchestrator:
+    build: { context: ./../apps/orchestrator }
+    env_file: ../.env
+    depends_on: [ doc_index, code_exec ]
+    environment:
+      TICK_SECS: "1.0"
+      DOC_INDEX_URL: "http://doc_index:7001"
+      CODE_EXEC_URL: "http://code_exec:7002"
+    volumes:
+      - ../artifacts:/artifacts
+      - ../configs:/app/configs
+      - ../sim:/app/sim
+      - ../agents:/app/agents
+
+  doc_index:
+    build: { context: ./../mcp/doc-index }
+    volumes:
+      - ../data/knowledge:/data
+    expose: [ "7001" ]
+
+  code_exec:
+    build: { context: ./../mcp/code-exec }
+    expose: [ "7002" ]
+
+  # frontend (scaffold; wire when ready)
+  # frontend:
+  #   build: { context: ./../apps/frontend }
+  #   ports: [ "3000:3000" ]
